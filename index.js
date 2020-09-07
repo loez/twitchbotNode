@@ -5,6 +5,7 @@ const io = require('socket.io')(http);
 const bot = require('./bot');
 const tts = require('./leitor');
 const configuracao = require('./config.json');
+const abrirnavegador = require('open');
 
 
 app.use(express.static(__dirname + '/views'));
@@ -25,10 +26,10 @@ io.on('connection', function (socket) {
 bot.on('chat', function (channel, user, message, self) {
 
     let mensagem = `${user["display-name"]} : ${message}`;
+
     if (configuracao["LerMensagem"] === true) {
         tts(mensagem,1.2);
     }
-    console.log(mensagem);
 
     io.emit('chat message', mensagem);
 });
@@ -36,3 +37,5 @@ bot.on('chat', function (channel, user, message, self) {
 http.listen(3000, function () {
     console.log('Servidor rodando na porta:' + 3000);
 });
+
+abrirnavegador('http://localhost:3000');

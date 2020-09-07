@@ -1,20 +1,26 @@
 body {
-text-align: center;
+    text-align: center;
+    background: transparent;
 }
-.mensagemChat{
+
+.mensagemChat {
     text-align: start;
 }
-.chatMensagem{
+
+.chatMensagem {
     border: black;
     text-align: start;
 }
-.listamensagens{
+
+.listamensagens {
     display: flex;
 }
+
 .scroll {
     max-height: 400px;
     overflow-y: auto;
 }
-.alinhamentomensagem{
+
+.alinhamentomensagem {
     text-align: start;
 }
