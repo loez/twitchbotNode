@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link href="./public/css/bootstrap.css" rel='stylesheet'>
+    <link rel="stylesheet" href="./public/css/simplebar.css">
+    <link href="./public/css/style.css" rel='stylesheet'>
+    <script src="https://kit.fontawesome.com/eed93c653a.js" crossorigin="anonymous"></script>
+    <title>LoezBR ChatBot para Twtich.TV</title>
+
+</head>
+<body>
+<script src="./public/js/socket.io.js"></script>
+<script src="./public/js/jquery.js"></script>
+<script src="./public/js/bootstrap.js"></script>
+<script src="./public/js/simplebar.js"></script>
+<script src="./public/js/principal.js"></script>
+
+<div class="card col-6 border-dark" style="max-height: 600px;height: 600px;">
+    <div class="card-header">
+        Chat da Stream
+        <i class="fab fa-twitch"></i>
+    </div>
+    <div class="card-body" style="height: 500px">
+        <ul class="list-group scroll" id="chatMensagem"></ul>
+        </ul>
+    </div>
+    <div class="card-body">
+        <div class="row">
+            <div class="input-group">
+                <input type="text" class="form-control" id="inputMensagem" placeholder="Digite uma mensagem" aria-label="Mensagem" aria-describedby="btnEnviaMensagem">
+                <div class="input-group-append">
+                    <button class="btn btn-primary" type="button" id="btnEnviaMensagem">Enviar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="card-footer text-muted">
+        Últimas Mensagens
+    </div>
+</div>
+
+</body>
+</html>

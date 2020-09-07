@@ -1,0 +1,26 @@
+{
+  "name": "botapp",
+  "version": "1.0.0",
+  "description": "Aplicativo de ChatBot para Twitch.TV",
+  "main": "index.js",
+  "scripts": {
+    "watch": "nodemon ./index.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "bootstrap": "^4.5.2",
+    "ejs": "^3.1.5",
+    "express": "^4.17.1",
+    "http": "0.0.1-security",
+    "jquery": "^3.5.1",
+    "say": "^0.16.0",
+    "simplebar": "^6.0.0-beta.4",
+    "socket.io": "^2.3.0",
+    "tmi.js": "^1.5.0"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.4"
+  }
+}

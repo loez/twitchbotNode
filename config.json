@@ -1,0 +1,6 @@
+{
+  "LerMensagem" : true,
+  "Canal" : ["seu canal"],
+  "Usuario" : "seu usuario",
+  "SenhaOATH" : "oauth gerada"
+}
