@@ -3,7 +3,7 @@ const app = require('express')();
 const http = require('http').Server(app);
 const io = require('socket.io')(http);
 const bot = require('./bot');
-// const tts = require('./leitor');
+const tts = require('./leitor');
 const configuracao = require('./config.json');
 const abrirnavegador = require('open');
 const moment = require('moment');
@@ -31,7 +31,7 @@ bot.on('chat', function (channel, user, message, self) {
         usuario = `${user["display-name"]}`;
 
     if (configuracao["LerMensagem"] === true) {
-        // tts(mensagem,1.2);
+        tts(mensagem,1.2);
     }
 
     io.emit('chat message', usuario, mensagem, data);

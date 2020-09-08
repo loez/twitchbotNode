@@ -5,7 +5,7 @@ jQuery(function () {
 
     socket.on('chat message', function (user, msg, data) {
         let paragrafo = (user == 'twoguederbot' ? '' +
-                '<li style="width:100%">' +
+                '<li class="animation-target" style="width:100%">' +
                     '<div class="msj macro">' +
                     '<div class="avatar"><i class="fab fa-twitch fa-3x"></i></div>' +
                         '<div class="text text-l">' +
@@ -15,7 +15,7 @@ jQuery(function () {
                     '</div>' +
                 '</li>'
                 :
-                '<li style="width:100%;">' +
+                '<li class="animation-target" style="width:100%;">' +
                 '<div class="msj-rta macro">' +
                     '<div class="text text-r">' +
                         '<p>'+ msg +'</p>' +
