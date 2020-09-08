@@ -34,7 +34,7 @@
 }
 .frame{
     background:#e0e0de;
-    height:450px;
+    height: calc(100vh - 125px);
     overflow:hidden;
     padding:0;
 }
@@ -50,13 +50,9 @@ body > div > div > div.msj-rta.macro{
 ul {
     width:100%;
     list-style-type: none;
-    padding:18px;
-    position:absolute;
-    bottom:47px;
+    padding:0, 18px;        
     display:flex;
     flex-direction: column;
-    top:0;
-    overflow-y:scroll;
 }
 .msj:before{
     width: 0;
@@ -95,7 +91,6 @@ input:focus{
 :-moz-placeholder { /* Firefox 18- */
     color: #d4d4d4;
 }
-#chatMensagem {
-    margin-top: 30px;
-    max-height: 450px;
+#chatMensagem {      
+    max-height: calc(100vh - 125px);
 }
