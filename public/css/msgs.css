@@ -7,7 +7,7 @@
 .text > p:first-of-type{
     width:100%;margin-top:0;margin-bottom:auto;line-height: 13px;font-size: 12px;
 }
-.text > p:last-of-type{
+.text-l > p:last-of-type{
     width:100%;text-align:right;color:silver;margin-bottom:-7px;margin-top:auto;
 }
 .text-l{
@@ -15,6 +15,9 @@
 }        
 .text-r{
     float:right;padding-left:10px;
+}
+.text-r > p:last-of-type{
+  width:100%;text-align:left;color:silver;margin-bottom:-7px;margin-top:auto;
 }
 .avatar{
     display:flex;
@@ -92,5 +95,6 @@ input:focus{
     color: #d4d4d4;
 }
 #chatMensagem {      
-    max-height: calc(100vh - 125px);
+  height: calc(100vh - 125px);
+  max-height: calc(100vh - 125px);
 }

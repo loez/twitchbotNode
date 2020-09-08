@@ -16,8 +16,7 @@ body {
     display: flex;
 }
 
-.scroll {
-    max-height: 400px;
+.scroll {    
     overflow-y: auto;
 }
 
