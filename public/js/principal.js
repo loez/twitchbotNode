@@ -17,9 +17,12 @@ jQuery(function () {
                 :
                 '<li class="animation-target" style="width:100%;">' +
                 '<div class="msj-rta macro">' +
-                    '<div class="text text-r">' +
+                    '<div class="text text-r">' +                        
                         '<p>'+ msg +'</p>' +
-                        '<p><small>'+data+'</small></p>' +
+                        '<p class="d-flex justify-content-between">' +
+                            '<strong>'+user+'</strong>' +
+                            '<small>'+data+'</small>' +
+                        '</p>' +
                     '</div>' +
                 '<div class="avatar" style="padding:0px 0px 0px 10px !important"><i class="fab fa-twitch fa-3x text-primary"></i></div>' +                                
           '</li>');                
