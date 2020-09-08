@@ -13,9 +13,9 @@ module.exports = cliente = new tmi.client(opts);
 
 cliente.on('connected',onConnectedHandler);
 
-function onDesconnectedHandler() {
-    cliente();
-    console.log('Desconectado');
+function onDesconnectedHandler(cliente) {
+    console.log('Desconectado' + cliente);
+    this.connect();
 }
 cliente.on('disconnected',onDesconnectedHandler)
 
