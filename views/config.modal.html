@@ -1,0 +1,36 @@
+<div class="modal" tabindex="-1" role="dialog" id="modalConfig">
+    <div class="modal-dialog modal-sm" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Configurações</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="fechar">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+            <div class="form-group row">
+                <label for="nomeBot">Usuário BOT</label>
+                <input type="text" class="form-control" id="nomeBot">
+            </div>
+                <div class="form-group row">
+                    <label for="senhaOAUTH">Token OAUTH</label>
+                    <input type="text" class="form-control" id="senhaOAUTH">
+                </div>
+                <div class="form-group row">
+                    <label for="canaisUsados">Canal</label>
+                    <input type="text" class="form-control" id="canaisUsados">
+                </div>
+                <div class="form-group row">
+                    <div class="custom-control custom-switch">
+                        <input type="checkbox" class="custom-control-input" id="lerMensagem">
+                        <label class="custom-control-label" for="lerMensagem">Texto para Áudio</label>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary">Salvar</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+            </div>
+        </div>
+    </div>
+</div>

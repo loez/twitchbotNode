@@ -1,5 +1,6 @@
 jQuery(function () {
     let socket = io();
+    $('#carregaModal').load('config.modal.html')
 
     socket.on('chat message', function (msg) {
         let paragrafo = new $('<li>');
@@ -20,5 +21,9 @@ jQuery(function () {
             socket.emit('chat message', mensagem.val());
             mensagem.val("");
         }
+    });
+
+    $('#btnchamamodal').click(function (){
+        $('#modalConfig').modal('show');
     });
 });
