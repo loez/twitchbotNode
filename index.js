@@ -3,9 +3,10 @@ const app = require('express')();
 const http = require('http').Server(app);
 const io = require('socket.io')(http);
 const bot = require('./bot');
-const tts = require('./leitor');
+// const tts = require('./leitor');
 const configuracao = require('./config.json');
 const abrirnavegador = require('open');
+const moment = require('moment');
 
 
 app.use(express.static(__dirname + '/views'));
@@ -25,17 +26,19 @@ io.on('connection', function (socket) {
 
 bot.on('chat', function (channel, user, message, self) {
 
-    let mensagem = `${user["display-name"]} : ${message}`;
+    let data = moment().format('LT'),  
+        mensagem = `${message}`,
+        usuario = `${user["display-name"]}`;
 
     if (configuracao["LerMensagem"] === true) {
-        tts(mensagem,1.2);
+        // tts(mensagem,1.2);
     }
 
-    io.emit('chat message', mensagem);
+    io.emit('chat message', usuario, mensagem, data);
 });
 
 http.listen(3000, function () {
     console.log('Servidor rodando na porta:' + 3000);
 });
 
-//abrirnavegador('http://localhost:3000');
+abrirnavegador('http://localhost:3000');
