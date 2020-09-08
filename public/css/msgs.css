@@ -51,10 +51,10 @@ body > div > div > div.msj-rta.macro{
     margin:auto;margin-left:1%;
 }
 ul {
-    width:100%;
+    width: 100%;
     list-style-type: none;
-    padding:0, 18px;        
-    display:flex;
+    padding: 0 18px;        
+    display: flex;
     flex-direction: column;
 }
 .msj:before{
