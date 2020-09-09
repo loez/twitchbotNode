@@ -7,10 +7,6 @@ body {
     text-align: start;
 }
 
-#chatMensagem {
-    overflow: auto;
-}
-
 .listamensagens {
     display: flex;
 }
