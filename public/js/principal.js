@@ -26,7 +26,7 @@ jQuery(function () {
             '<div class="avatar" style="padding:0px 0px 0px 10px !important">' + (logo != null ? '<img class="logo-user rounded-circle" src="' + logo + '" />' : '<i class="fab fa-twitch fa-3x text-primary"></i>') + '</div>' +
             '</li>');
         $('#chatMensagem').append(paragrafo);
-        $('#chatMensagem').scrollTop =  $('#chatMensagem').scrollHeight;
+        $('#chatMensagem').scrollTop($('#chatMensagem').height());
     });
     socket.on('view', function (qtdview) {
         qtdview === 'Offline' ? $('.online').removeClass('online').addClass('offline') && $('.usersonline').text('Offline') : $('.offline').removeClass('offline').addClass('online') && $('.usersonline').text(qtdview);
