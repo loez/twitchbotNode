@@ -98,3 +98,6 @@ input:focus{
   height: calc(100vh - 125px);
   max-height: calc(100vh - 125px);
 }
+.logo-user {
+    width: 48px;
+}
