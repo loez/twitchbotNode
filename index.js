@@ -35,7 +35,7 @@ bot.on('chat', function (channel, user, message, self) {
     }
 
     api(user['user-id'], ClienteID, function(logo){
-        io.emit('chat message', usuario, mensagem, data, logo);
+        io.emit('chat message', usuario, mensagem, data, logo,self);
     });
 });
 

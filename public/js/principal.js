@@ -2,8 +2,8 @@ jQuery(function () {
     let socket = io();
     $('#carregaModal').load('config.modal.html')
 
-    socket.on('chat message', function (user, msg, data, logo) {
-        let paragrafo = (user == 'twoguederbot' ? '' +
+    socket.on('chat message', function (user, msg, data, logo,self) {
+        let paragrafo = (self ? '' +
                 '<li class="animation-target" style="width:100%">' +
                     '<div class="msj macro">' +
                     '<div class="avatar">' + (logo != null ? '<img class="logo-user rounded-circle" src="'+ logo +'" />' : '<i class="fab fa-twitch fa-3x">') + '</i></div>' +
