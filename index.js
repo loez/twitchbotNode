@@ -7,6 +7,8 @@ const tts = require('./leitor');
 const configuracao = require('./config.json');
 const abrirnavegador = require('open');
 const moment = require('moment');
+const api = require('./api');
+const ClienteID = 'm2yrzkzgqq30hvgk24ng41smuucpsd';
 
 
 app.use(express.static(__dirname + '/views'));
@@ -32,7 +34,9 @@ bot.on('chat', function (channel, user, message, self) {
         tts(mensagem,1.2);
     }
 
-    io.emit('chat message', usuario, mensagem, data);
+    api(user['user-id'], ClienteID, function(logo){
+        io.emit('chat message', usuario, mensagem, data, logo);
+    });
 });
 
 http.listen(3000, function () {
