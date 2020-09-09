@@ -1,5 +1,5 @@
 {
-  "LerMensagem" : false,
+  "LerMensagem" : true,
   "Canal" : [""],
   "Usuario" : "",
   "SenhaOATH" : ""

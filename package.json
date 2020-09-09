@@ -29,7 +29,8 @@
     "say": "^0.16.0",
     "simplebar": "^6.0.0-beta.4",
     "socket.io": "^2.3.0",
-    "tmi.js": "^1.5.0"
+    "tmi.js": "^1.5.0",
+    "toastr": "^2.1.4"
   },
   "devDependencies": {
     "nodemon": "^2.0.4"

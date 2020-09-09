@@ -12,8 +12,6 @@ const moment = require('moment');
 app.use(express.static(__dirname + '/views'));
 app.use(express.static(__dirname + '/'));
 
-module.exports = app;
-
 bot.connect();
 
 io.on('connection', function (socket) {
@@ -42,3 +40,7 @@ http.listen(3000, function () {
 });
 
 abrirnavegador('http://localhost:3000');
+
+exports.app = app;
+exports.html = http;
+exports.io = io;
