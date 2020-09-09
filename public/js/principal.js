@@ -26,8 +26,11 @@ jQuery(function () {
             '<div class="avatar" style="padding:0px 0px 0px 10px !important">' + (logo != null ? '<img class="logo-user rounded-circle" src="' + logo + '" />' : '<i class="fab fa-twitch fa-3x text-primary"></i>') + '</div>' +
             '</li>');
         $('#chatMensagem').append(paragrafo);
+        $('#chatMensagem').scrollTop =  $('#chatMensagem').scrollHeight;
     });
-
+    socket.on('view', function (qtdview) {
+        qtdview === 'Offline' ? $('.online').removeClass('online').addClass('offline') && $('.usersonline').text('Offline') : $('.offline').removeClass('offline').addClass('online') && $('.usersonline').text(qtdview);
+    });
     socket.on('Erro', function (ocorreu) {
         //  tela de login a ser implementada
         //  toastr.options.onHidden = function () {
@@ -35,8 +38,6 @@ jQuery(function () {
         // }
         mostraToastr("Erro ao Logar na Twitch", "Erro no Login", ToastrEnum.error);
     });
-
-    $('.toast').toast('show');
 
     $('#inputMensagem').on("keydown", function (event) {
         if (event.keyCode === 13) {

@@ -7,8 +7,7 @@ const tts = require('./leitor');
 const configuracao = require('./config.json');
 const abrirnavegador = require('open');
 const moment = require('moment');
-const api = require('./api').retornaLogo;
-const viewer = require('./api').retornaViewer;
+const api = require('./api');
 const ClienteID = 'm2yrzkzgqq30hvgk24ng41smuucpsd';
 
 
@@ -19,26 +18,33 @@ bot.connect();
 
 io.on('connection', function (socket) {
     socket.on('chat message', function (msg) {
-       console.log(msg);
-        bot.say(configuracao.Canal[0],msg);
+        console.log(msg);
+        bot.say(configuracao.Canal[0], msg);
     });
 });
 
+api.retornaDadosCanal(ClienteID, function (retorno) {
+    io.emit('view', retorno["data"].length > 0 ? retorno["data"][0]["viewer_count"] : 'Offline');
+})
+
+setInterval(function () {
+    api.retornaDadosCanal(ClienteID, function (retorno) {
+        io.emit('view', retorno["data"].length > 0 ? retorno["data"][0]["viewer_count"] : 'Offline');
+    })
+}, 60000)
 
 bot.on('chat', function (channel, user, message, self) {
 
-    let data = moment().format('LT'),  
+    let data = moment().format('LT'),
         mensagem = `${message}`,
         usuario = `${user["display-name"]}`;
 
     if (configuracao["LerMensagem"] === true) {
-        tts(mensagem,1.2);
+        tts(mensagem, 1.2);
     }
-    // viewer(configuracao.Canal[0],ClienteID,function (retorno){
-    //    console.log(retorno);
-    // });
-    api(user['user-id'], ClienteID, function(logo){
-        io.emit('chat message', usuario, mensagem, data, logo,self);
+
+    api.retornaLogo(user['user-id'], ClienteID, function (logo) {
+        io.emit('chat message', usuario, mensagem, data, logo, self);
     });
 });
 
