@@ -7,7 +7,8 @@ const tts = require('./leitor');
 const configuracao = require('./config.json');
 const abrirnavegador = require('open');
 const moment = require('moment');
-const api = require('./api');
+const api = require('./api').retornaLogo;
+const viewer = require('./api').retornaViewer;
 const ClienteID = 'm2yrzkzgqq30hvgk24ng41smuucpsd';
 
 
@@ -33,7 +34,9 @@ bot.on('chat', function (channel, user, message, self) {
     if (configuracao["LerMensagem"] === true) {
         tts(mensagem,1.2);
     }
-
+    // viewer(configuracao.Canal[0],ClienteID,function (retorno){
+    //    console.log(retorno);
+    // });
     api(user['user-id'], ClienteID, function(logo){
         io.emit('chat message', usuario, mensagem, data, logo,self);
     });

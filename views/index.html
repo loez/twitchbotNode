@@ -19,20 +19,27 @@
         <div class="col-6">
             <div class="card">
                 <div class="card-header">
-                    Chat da Stream <i class="fab fa-twitch"></i>
+                    Chat da Stream <i class="fab fa-twitch" style="color: #772ce8;"></i>
                 </div>
                 <div class="card-body frame">
-                    <ul class="scroll" id="chatMensagem"></ul>                    
+                    <ul class="scroll" id="chatMensagem"></ul>
                 </div>
                 <div class="card-footer text-muted">
                     <div class="row">
-                        <div class="input-group">
-                            <input type="text" class="form-control" id="inputMensagem" placeholder="Digite uma mensagem" aria-label="Mensagem" aria-describedby="btnEnviaMensagem">
+                        <div class="col input-group">
+                            <input type="text" class="form-control" id="inputMensagem" placeholder="Digite uma mensagem"
+                                   aria-label="Mensagem" aria-describedby="btnEnviaMensagem">
                             <div class="input-group-append">
                                 <button class="btn btn-primary" type="button" id="btnEnviaMensagem">Enviar</button>
                             </div>
                         </div>
-                    </div>        
+                        <div class="col-auto">
+                            <a href="#">
+                                <i class="fas fa-user-friends fa-2x" style="color: #772ce8;"></i>
+                            </a>
+                        </div>
+
+                    </div>
                 </div>
             </div>
         </div>
