@@ -11,20 +11,23 @@
     <link href="./public/css/lib/toastr.css" rel='stylesheet'>
     <script src="https://kit.fontawesome.com/eed93c653a.js" crossorigin="anonymous"></script>
     <title>LoezBR ChatBot para Twtich.TV</title>
-
 </head>
 <body>
 <div class="container-fluid">
     <div class="row justify-content-md-center mt-1">
         <div class="col-6">
             <div class="card">
-
                 <div class="card-header">
-                    Chat da Stream <i class="fab fa-twitch" style="color: #772ce8;"></i>
-
-                        <i class="fas fa-user online"></i>
-                    <i class="usersonline">0</i>
-
+                    <div class="d-flex flex-row">
+                        <div class="flex-grow-1">
+                            Chat da Stream <i class="fab fa-twitch twitch"></i>
+                        </div>
+                        <div>
+                            <i class="fas fa-user-slash fa-lg offline status">
+                                <span class="count badge badge-online bg-success d-none">0</span>
+                            </i>
+                        </div>
+                    </div>
                 </div>
                 <div class="card-body frame">
                     <ul class="scroll" id="chatMensagem"></ul>

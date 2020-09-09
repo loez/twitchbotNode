@@ -34,17 +34,15 @@ setInterval(function () {
 }, 60000)
 
 bot.on('chat', function (channel, user, message, self) {
-
     let data = moment().format('LT'),
-        mensagem = `${message}`,
-        usuario = `${user["display-name"]}`;
+        usuario = user["display-name"];
 
     if (configuracao["LerMensagem"] === true) {
-        tts(mensagem, 1.2);
+        tts(message, 1.2);
     }
 
     api.retornaLogo(user['user-id'], ClienteID, function (logo) {
-        io.emit('chat message', usuario, mensagem, data, logo, self);
+        io.emit('chat message', usuario, message, data, logo, self);
     });
 });
 

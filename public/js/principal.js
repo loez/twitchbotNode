@@ -29,7 +29,7 @@ jQuery(function () {
         $('#chatMensagem').scrollTop =  $('#chatMensagem').scrollHeight;
     });
     socket.on('view', function (qtdview) {
-        qtdview === 'Offline' ? $('.online').removeClass('online').addClass('offline') && $('.usersonline').text('Offline') : $('.offline').removeClass('offline').addClass('online') && $('.usersonline').text(qtdview);
+        qtdview === 'Offline' ? $('.status').removeClass('online').removeClass('fa-user').addClass('offline').addClass('fa-user-slash').find('.badge').addClass('d-none').end() : $('.status').removeClass('offline').removeClass('fa-user-slash').addClass('online').addClass('fa-user').find('.badge').removeClass('d-none').html(qtdview).end();
     });
     socket.on('Erro', function (ocorreu) {
         //  tela de login a ser implementada

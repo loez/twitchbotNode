@@ -29,3 +29,17 @@ body {
 .offline{
     color : black;
 }
+
+.twitch{
+    color: #772ce8;
+}
+
+.badge-online {
+    color: #fff;
+    height: 17px;
+    right: 36px;
+    top: 17px;
+    position: absolute;
+    font-size: 10px;
+    font-weight: 600;
+}
