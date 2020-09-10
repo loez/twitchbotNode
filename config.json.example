@@ -1,0 +1,9 @@
+{
+  "LerMensagem": false,
+  "Canal": [
+    "nomedocanal"
+  ],
+  "Usuario": "usuario do bot",
+  "SenhaOATH": "oauth:token",
+  "SenhaBearer": "bearer token"
+}
