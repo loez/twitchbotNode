@@ -3,9 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <link rel="icon" type="image/png" sizes="32x32" href="https://static.twitchcdn.net/assets/favicon-32-d6025c14e900565d6177.png">
+    <link rel="icon" type="image/png" sizes="32x32"
+          href="https://static.twitchcdn.net/assets/favicon-32-d6025c14e900565d6177.png">
     <link href="./public/css/lib/bootstrap.css" rel='stylesheet'>
     <link rel="stylesheet" href="./public/css/lib/simplebar.css">
+    <link type="text/css" href="./public/css/lib/OverlayScrollbars.css" rel="stylesheet"/>
     <link href="./public/css/style.css" rel='stylesheet'>
     <link href="./public/css/msgs.css" rel='stylesheet'>
     <link href="./public/css/bounce.css" rel='stylesheet'>
@@ -25,13 +27,15 @@
                         </div>
                         <div>
                             <i class="fas fa-user-slash fa-lg offline status">
-                                <span class="count badge badge-online bg-success d-none">0</span>
+                                <span class="count badge badge-online d-none">0</span>
                             </i>
                         </div>
                     </div>
                 </div>
-                <div class="card-body frame">
-                    <ul class="scroll" id="chatMensagem"></ul>
+                <div class="card-body cardfill">
+                    <div class="frame" id="barraRolagem">
+                        <ul id="chatMensagem"></ul>
+                    </div>
                 </div>
                 <div class="card-footer text-muted">
                     <div class="row">
@@ -59,6 +63,7 @@
 <script src="./public/js/lib/jquery.js"></script>
 <script src="./public/js/lib/bootstrap.js"></script>
 <script src="./public/js/lib/toastr.min.js"></script>
+<script src="./public/js/lib/OverlayScrollbars.js"></script>
 <script src="./public/js/base.js"></script>
 <script src="./public/js/lib/simplebar.js"></script>
 <script src="./public/js/principal.js"></script>

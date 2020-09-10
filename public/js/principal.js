@@ -1,6 +1,7 @@
 jQuery(function () {
     let socket = io();
-    $('#carregaModal').load('config.modal.html')
+    $('#carregaModal').load('config.modal.html');
+    $("#barraRolagem").overlayScrollbars({overflowBehavior :{x: 'hidden',y : 'scroll'}});
 
     socket.on('chat message', function (user, msg, data, logo, self) {
         let paragrafo = (self ? '' +
@@ -26,7 +27,7 @@ jQuery(function () {
             '<div class="avatar" style="padding:0px 0px 0px 10px !important">' + (logo != null ? '<img class="logo-user rounded-circle" src="' + logo + '" />' : '<i class="fab fa-twitch fa-3x text-primary"></i>') + '</div>' +
             '</li>');
         $('#chatMensagem').append(paragrafo);
-        $('#chatMensagem').scrollTop($('#chatMensagem').get(0).scrollHeight);
+        $("#barraRolagem").overlayScrollbars().scroll({ x : "0%", y : "100%" });
     });
     socket.on('view', function (qtdview) {
         qtdview === 'Offline' ? $('.status').removeClass('online').removeClass('fa-user').addClass('offline').addClass('fa-user-slash').find('.badge').addClass('d-none').end() : $('.status').removeClass('offline').removeClass('fa-user-slash').addClass('online').addClass('fa-user').find('.badge').removeClass('d-none').html(qtdview).end();
