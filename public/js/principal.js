@@ -7,7 +7,7 @@ jQuery(function () {
         let paragrafo = (self ? '' +
             '<li class="animation-target" style="width:100%">' +
             '<div class="msj macro">' +
-            '<div class="avatar">' + (logo != null ? '<img class="logo-user rounded-circle" src="' + logo + '" />' : '<i class="fab fa-twitch fa-3x">') + '</i></div>' +
+            '<div class="avatar">' + (logo != null ? '<img class="logo-user rounded-circle" alt="logo" src="' + logo + '" />' : '<i class="fab fa-twitch fa-3x">') + '</i></div>' +
             '<div class="text text-l">' +
             '<p>' + msg + '</p>' +
             '<p><small>' + data + '</small></p>' +
@@ -24,15 +24,16 @@ jQuery(function () {
             '<small>' + data + '</small>' +
             '</p>' +
             '</div>' +
-            '<div class="avatar" style="padding:0px 0px 0px 10px !important">' + (logo != null ? '<img class="logo-user rounded-circle" src="' + logo + '" />' : '<i class="fab fa-twitch fa-3x text-primary"></i>') + '</div>' +
+            '<div class="avatar" style="padding:0 0 0 10px !important">' + (logo != null ? '<img class="logo-user rounded-circle" alt="logo" src="' + logo + '" />' : '<i class="fab fa-twitch fa-3x text-primary"></i>') + '</div>' +
             '</li>');
         $('#chatMensagem').append(paragrafo);
         $("#barraRolagem").overlayScrollbars().scroll({ x : "0%", y : "100%" });
     });
     socket.on('view', function (qtdview) {
-        qtdview === 'Offline' ? $('.status').removeClass('online').removeClass('fa-user').addClass('offline').addClass('fa-user-slash').find('.badge').addClass('d-none').end() : $('.status').removeClass('offline').removeClass('fa-user-slash').addClass('online').addClass('fa-user').find('.badge').removeClass('d-none').html(qtdview).end();
+        let status = $('.status');
+        qtdview === 'Offline' ? status.removeClass('online').removeClass('fa-user').addClass('offline').addClass('fa-user-slash').find('.badge').addClass('d-none').end() : status.removeClass('offline').removeClass('fa-user-slash').addClass('online').addClass('fa-user').find('.badge').removeClass('d-none').html(qtdview).end();
     });
-    socket.on('Erro', function (ocorreu) {
+    socket.on('Erro', function () {
         //  tela de login a ser implementada
         //  toastr.options.onHidden = function () {
         //     window.location = "/login.html";
@@ -46,7 +47,7 @@ jQuery(function () {
         }
     });
 
-    $('#btnEnviaMensagem').click(function (e) {
+    $('#btnEnviaMensagem').click(function () {
         let mensagem = $('#inputMensagem');
 
         if (mensagem.val() !== "") {
@@ -63,13 +64,13 @@ jQuery(function () {
         $('.card-users').toggleClass('show');
     });
 
-    // $.ajax({
-    //     url: 'https://tmi.twitch.tv/group/user/rtstreamer/chatters',
-    //     method: 'GET',
-    //     dataType: 'jsonp',
-    //     success: function(data) {
-    //         console.log(data);
-    //     }
-    // });
+    $.ajax({
+        url: 'https://tmi.twitch.tv/group/user/rtstreamer/chatters',
+        method: 'GET',
+        dataType: 'jsonp',
+        success: function(data) {
+            console.log(data);
+        }
+    });
 
 });
