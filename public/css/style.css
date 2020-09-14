@@ -42,3 +42,22 @@ body {
 .cardfill{
     padding: 0;
 }
+
+.card-users {
+    width: 1px;
+    opacity: 0;
+    transition: all .75s ease;
+    left: -305px;
+    z-index: -1;
+}
+
+.card-users.show {
+    opacity: 1;
+    left: -2px;
+    width: 305px;
+}
+
+.card-body-users{
+    min-height: calc(100vh - 62px);
+    max-height: calc(100vh - 62px);
+}

@@ -59,6 +59,10 @@ jQuery(function () {
         $('#modalConfig').modal('show');
     });
 
+    $('.btn-users').on('click', function (){
+        $('.card-users').toggleClass('show');
+    });
+
     // $.ajax({
     //     url: 'https://tmi.twitch.tv/group/user/rtstreamer/chatters',
     //     method: 'GET',
