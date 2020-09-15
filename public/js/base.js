@@ -21,3 +21,17 @@ function mostraToastr(msg, titulo, ToastrEnum) {
             break;
     }
 }
+
+function retornaDadosAjax(caminho, conteudo, metodo = 'GET', tipodata = 'json') {
+    let resultado;
+    $.ajax({
+        url: caminho,
+        method: metodo,
+        dataType: tipodata,
+        data: conteudo,
+    }).done((retorno) => {
+        resultado = retorno;
+    });
+
+    return resultado;
+}

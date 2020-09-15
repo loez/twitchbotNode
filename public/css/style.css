@@ -61,3 +61,7 @@ body {
     min-height: calc(100vh - 62px);
     max-height: calc(100vh - 62px);
 }
+
+.removedistanciapadding{
+    padding: 2px;
+}
