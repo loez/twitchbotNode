@@ -1,7 +1,8 @@
 jQuery(function () {
+    let canal;
     let socket = io();
     $('#carregaModal').load('config.modal.html');
-    $("#barraRolagem").overlayScrollbars({overflowBehavior :{x: 'hidden',y : 'scroll'}});
+    $("#barraRolagem").overlayScrollbars({overflowBehavior: {x: 'hidden', y: 'scroll'}});
 
     socket.on('chat message', function (user, msg, data, logo, self) {
         let paragrafo = (self ? '' +
@@ -27,11 +28,9 @@ jQuery(function () {
             '<div class="avatar" style="padding:0px 0px 0px 10px !important">' + (logo != null ? '<img class="logo-user rounded-circle" src="' + logo + '" />' : '<i class="fab fa-twitch fa-3x text-primary"></i>') + '</div>' +
             '</li>');
         $('#chatMensagem').append(paragrafo);
-        $("#barraRolagem").overlayScrollbars().scroll({ x : "0%", y : "100%" });
+        $("#barraRolagem").overlayScrollbars().scroll({x: "0%", y: "100%"});
     });
-    socket.on('view', function (qtdview) {
-        qtdview === 'Offline' ? $('.status').removeClass('online').removeClass('fa-user').addClass('offline').addClass('fa-user-slash').find('.badge').addClass('d-none').end() : $('.status').removeClass('offline').removeClass('fa-user-slash').addClass('online').addClass('fa-user').find('.badge').removeClass('d-none').html(qtdview).end();
-    });
+
     socket.on('Erro', function (ocorreu) {
         //  tela de login a ser implementada
         //  toastr.options.onHidden = function () {
@@ -63,6 +62,8 @@ jQuery(function () {
         $('.card-users').toggleClass('show');
     });
 
+    setInterval(retornaqtdViews, 30000);
+
     // $.ajax({
     //     url: 'https://tmi.twitch.tv/group/user/rtstreamer/chatters',
     //     method: 'GET',
@@ -71,5 +72,23 @@ jQuery(function () {
     //         console.log(data);
     //     }
     // });
+
+    function retornaqtdViews() {
+
+        $.ajax({
+                url: '/nviews',
+                dataType: 'json',
+                type: 'GET',
+                data: {}
+            }
+        ).then((retorno) => {
+            let qtdview = retorno["data"].length > 0 ? retorno["data"][0]["viewer_count"] : 'Offline';
+            canal = retorno["data"][0]["user_name"];
+            qtdview === 'Offline' ? $('.status').removeClass('online').removeClass('fa-user').addClass('offline').addClass('fa-user-slash').find('.badge').addClass('d-none').end() : $('.status').removeClass('offline').removeClass('fa-user-slash').addClass('online').addClass('fa-user').find('.badge').removeClass('d-none').html(qtdview).end();
+            let dadosuserchat = retornaDadosAjax('https://tmi.twitch.tv/group/user/' + canal + '/chatters', null,'GET','jsonp')
+
+            console.log(dadosuserchat);
+        });
+    }
 
 });
