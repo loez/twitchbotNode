@@ -61,7 +61,7 @@ jQuery(function () {
         $('#modalConfig').modal('show');
     });
 
-    $('.btn-users').on('click', function (){
+    $('.btn-users').on('click', function () {
         $('.card-users').toggleClass('show');
     });
 
@@ -86,11 +86,18 @@ jQuery(function () {
             }
         ).then((retorno) => {
             let qtdview = retorno["data"].length > 0 ? retorno["data"][0]["viewer_count"] : 'Offline';
-            canal = retorno["data"][0]["user_name"];
             qtdview === 'Offline' ? $('.status').removeClass('online').removeClass('fa-user').addClass('offline').addClass('fa-user-slash').find('.badge').addClass('d-none').end() : $('.status').removeClass('offline').removeClass('fa-user-slash').addClass('online').addClass('fa-user').find('.badge').removeClass('d-none').html(qtdview).end();
-            let dadosuserchat = retornaDadosAjax('https://tmi.twitch.tv/group/user/' + canal + '/chatters', null,'GET','jsonp')
 
-            console.log(dadosuserchat);
+            if (retorno["data"].length > 0) {
+                canal = retorno["data"][0]["user_name"]
+                retornaDadosAjax('https://tmi.twitch.tv/group/user/' + canal + '/chatters', null, 'GET', 'jsonp')
+                    .then((retornoAjax) => {
+                        console.log(retornoAjax["data"]["chatters"]);
+                    })
+                    .catch((erroAjax) => {
+                        console.timeLog(erroAjax);
+                    });
+            }
         });
     }
 

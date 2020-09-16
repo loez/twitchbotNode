@@ -22,16 +22,17 @@ function mostraToastr(msg, titulo, ToastrEnum) {
     }
 }
 
-function retornaDadosAjax(caminho, conteudo, metodo = 'GET', tipodata = 'json') {
-    let resultado;
-    $.ajax({
-        url: caminho,
-        method: metodo,
-        dataType: tipodata,
-        data: conteudo,
-    }).done((retorno) => {
-        resultado = retorno;
-    });
+const retornaDadosAjax = (caminho, conteudo, metodo = 'GET', tipodata = 'json') => new Promise((sucesso, erro) => {
 
-    return resultado;
-}
+    $.ajax(caminho, {
+        type: metodo,
+        data: conteudo,
+        dataType: tipodata,
+        success: function (retorno) {
+            sucesso(retorno);
+        },
+        fail: function (error) {
+            erro(error);
+        }
+    });
+});
