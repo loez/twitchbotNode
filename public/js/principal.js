@@ -78,27 +78,24 @@ jQuery(function () {
 
     function retornaqtdViews() {
 
-        $.ajax({
-                url: '/nviews',
-                dataType: 'json',
-                type: 'GET',
-                data: {}
-            }
-        ).then((retorno) => {
-            let qtdview = retorno["data"].length > 0 ? retorno["data"][0]["viewer_count"] : 'Offline';
-            qtdview === 'Offline' ? $('.status').removeClass('online').removeClass('fa-user').addClass('offline').addClass('fa-user-slash').find('.badge').addClass('d-none').end() : $('.status').removeClass('offline').removeClass('fa-user-slash').addClass('online').addClass('fa-user').find('.badge').removeClass('d-none').html(qtdview).end();
+        retornaDadosAjax('/nviews', null)
+            .then((retorno) => {
 
-            if (retorno["data"].length > 0) {
-                canal = retorno["data"][0]["user_name"]
-                retornaDadosAjax('https://tmi.twitch.tv/group/user/' + canal + '/chatters', null, 'GET', 'jsonp')
-                    .then((retornoAjax) => {
-                        console.log(retornoAjax["data"]["chatters"]);
-                    })
-                    .catch((erroAjax) => {
-                        console.timeLog(erroAjax);
-                    });
-            }
-        });
+                let qtdview = retorno["data"].length > 0 ? retorno["data"][0]["viewer_count"] : 'Offline';
+                qtdview === 'Offline' ? $('.status').removeClass('online').removeClass('fa-user').addClass('offline').addClass('fa-user-slash').find('.badge').addClass('d-none').end() : $('.status').removeClass('offline').removeClass('fa-user-slash').addClass('online').addClass('fa-user').find('.badge').removeClass('d-none').html(qtdview).end();
+
+                if (retorno["data"].length > 0) {
+                    canal = retorno["data"][0]["user_name"]
+                    retornaDadosAjax('https://tmi.twitch.tv/group/user/' + canal + '/chatters', null, 'GET', 'jsonp')
+                        .then((retornoAjax) => {
+                            console.log(retornoAjax["data"]["chatters"]);
+                        })
+                        .catch((erroAjax) => {
+                            console.timeLog(erroAjax);
+                        });
+                }
+            });
     }
+
 
 });
