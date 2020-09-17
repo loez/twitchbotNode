@@ -18,7 +18,7 @@
 <body>
 <div class="container-fluid">
     <div class="row justify-content-md-center mt-1">
-        <div class="col-6 pr-0">
+        <div class="col-6 pr-0 colprincipalchat">
             <div class="card">
                 <div class="card-header">
                     <div class="d-flex flex-row">
@@ -56,15 +56,18 @@
             </div>
         </div>
         <div class="col-2 pl-0">
-            <div class="card card-users slide-right">
+            <div class="card card-users slide-right" id="usuariosChat">
                 <div class="card-header">
                     <div class="d-flex flex-row">
                         <div class="flex-grow-1">
-                            <i class="fas fa-users"></i> Usersgit
+                            <i class="fas fa-users"></i> Usuários
                         </div>
                     </div>
                 </div>
-                <div class="card-body card-body-users">
+                <div class="card-body card-body-users cardfill" id="barraRolagemUsuarios">
+                        <ul class="list-group list-group-flush" id="listaUsuariosChat">
+
+                        </ul>
                 </div>
             </div>
         </div>

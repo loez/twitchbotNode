@@ -3,6 +3,7 @@ jQuery(function () {
     let socket = io();
     $('#carregaModal').load('config.modal.html');
     $("#barraRolagem").overlayScrollbars({overflowBehavior: {x: 'hidden', y: 'scroll'}});
+    $('#barraRolagemUsuarios').overlayScrollbars({});
 
     socket.on('chat message', function (user, msg, data, logo, self) {
         let paragrafo = (self ? '' +
@@ -85,17 +86,33 @@ jQuery(function () {
                 qtdview === 'Offline' ? $('.status').removeClass('online').removeClass('fa-user').addClass('offline').addClass('fa-user-slash').find('.badge').addClass('d-none').end() : $('.status').removeClass('offline').removeClass('fa-user-slash').addClass('online').addClass('fa-user').find('.badge').removeClass('d-none').html(qtdview).end();
 
                 if (retorno["data"].length > 0) {
-                    canal = retorno["data"][0]["user_name"]
-                    retornaDadosAjax('https://tmi.twitch.tv/group/user/' + canal + '/chatters', null, 'GET', 'jsonp')
-                        .then((retornoAjax) => {
-                            console.log(retornoAjax["data"]["chatters"]);
-                        })
-                        .catch((erroAjax) => {
-                            console.timeLog(erroAjax);
-                        });
+                    if ($('#usuariosChat').hasClass('show')) {
+                        canal = retorno["data"][0]["user_name"]
+                        retornaDadosAjax('https://tmi.twitch.tv/group/user/' + canal.toLowerCase() + '/chatters', null, 'GET', 'jsonp')
+                            .then((retornoAjax) => {
+                                retornaViewrsChat(retornoAjax["data"]["chatters"]);
+                            })
+                            .catch((erroAjax) => {
+                                console.timeLog(erroAjax);
+                            });
+                    }
                 }
             });
     }
 
 
 });
+
+function retornaViewrsChat(viewersChat) {
+    let chatlista = '';
+    $.each(viewersChat, function (index, value) {
+        $('#listaUsuariosChat').empty();
+        chatlista += '<li class="list-group-item">' + '<strong>' + index + '</strong>' + '</li>';
+        chatlista += '<ul class="list-group list-group-flush">'
+        $.each(value, function (index, value) {
+            chatlista += '<li class="list-group-item">' + value + '</li>';
+        })
+        chatlista += '</ul>'
+    })
+    $('#listaUsuariosChat').append(chatlista)
+}

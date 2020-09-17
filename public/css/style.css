@@ -48,7 +48,7 @@ body {
     opacity: 0;
     transition: all .75s ease;
     left: -305px;
-    z-index: -1;
+    z-index: 0;
 }
 
 .card-users.show {
@@ -64,4 +64,7 @@ body {
 
 .removedistanciapadding{
     padding: 2px;
+}
+.colprincipalchat {
+    z-index: 2;
 }
