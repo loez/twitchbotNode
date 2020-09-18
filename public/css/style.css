@@ -68,3 +68,8 @@ body {
 .colprincipalchat {
     z-index: 2;
 }
+
+.badge-chat-online{
+    color: rgb(250,0,0);
+    background-color: transparent;
+}

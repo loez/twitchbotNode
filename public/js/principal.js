@@ -90,6 +90,7 @@ jQuery(function () {
                         canal = retorno["data"][0]["user_name"]
                         retornaDadosAjax('https://tmi.twitch.tv/group/user/' + canal.toLowerCase() + '/chatters', null, 'GET', 'jsonp')
                             .then((retornoAjax) => {
+                                $('#usuariosNoChat').text(retornoAjax["data"]["chatter_count"]);
                                 retornaViewrsChat(retornoAjax["data"]["chatters"]);
                             })
                             .catch((erroAjax) => {
@@ -105,13 +106,15 @@ jQuery(function () {
 
 function retornaViewrsChat(viewersChat) {
     let chatlista = '';
+    $('#listaUsuariosChat').empty();
     $.each(viewersChat, function (index, value) {
-        $('#listaUsuariosChat').empty();
-        chatlista += '<li class="list-group-item">' + '<strong>' + index + '</strong>' + '</li>';
-        chatlista += '<ul class="list-group list-group-flush">'
-        $.each(value, function (index, value) {
-            chatlista += '<li class="list-group-item">' + value + '</li>';
-        })
+        if (value.length > 0) {
+            chatlista += '<li class="list-group-item active">' + '<strong>' + index + '</strong>' + '</li>';
+            chatlista += '<ul class="list-group list-group-flush">'
+            $.each(value, function (index, value) {
+                chatlista += '<li class="list-group-item">' + value + '</li>';
+            })
+        }
         chatlista += '</ul>'
     })
     $('#listaUsuariosChat').append(chatlista)
