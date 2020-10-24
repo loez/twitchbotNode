@@ -2,8 +2,8 @@ const say = require('say');
 
 //module.exports = say;
 
-function falar(mensagem, velocidade = 1) {
-    say.speak(mensagem, null, velocidade);
+async function falar(mensagem, velocidade = 1) {
+    await say.speak(mensagem, null, velocidade);
 }
 
 module.exports = falar;

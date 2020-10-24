@@ -8,6 +8,7 @@ const configuracao = require('./config.json');
 const abrirnavegador = require('open');
 const moment = require('moment');
 const api = require('./api');
+const gtts = require('node-gtts')('pt-br');
 
 
 app.use(express.static(__dirname + '/views'));
@@ -17,7 +18,6 @@ bot.connect();
 
 io.on('connection', function (socket) {
     socket.on('chat message', function (msg) {
-        console.log(msg);
         bot.say(configuracao.Canal[0], msg);
     });
 });
@@ -26,9 +26,9 @@ bot.on('chat', function (channel, user, message, self) {
     let data = moment().format('LT'),
         usuario = user["display-name"];
 
-    if (configuracao["LerMensagem"] === true) {
-        tts(message, 1.2);
-    }
+    // if (configuracao["LerMensagem"] === true) {
+    //     tts(message, 1.2);
+    // }
 
     api.retornaLogo(user['user-id'], configuracao["ClientID"], function (logo) {
         io.emit('chat message', usuario, message, data, logo, self);
@@ -49,6 +49,11 @@ app.get('/nviews', function (req, res) {
     })
 });
 
+app.get('/hear',function (req,res){
+    res.set({'Content-Type': 'audio/mpeg'});
+    gtts.stream(req.query.Mensagem).pipe(res);
+    res.send(req.url);
+})
 
 exports.app = app;
 exports.html = http;

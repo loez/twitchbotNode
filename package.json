@@ -25,6 +25,7 @@
     "http": "0.0.1-security",
     "jquery": "^3.5.1",
     "moment": "^2.27.0",
+    "node-gtts": "^2.0.2",
     "open": "^7.2.1",
     "overlayscrollbars": "^1.13.0",
     "popper.js": "^1.16.1",

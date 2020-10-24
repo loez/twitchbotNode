@@ -6,6 +6,13 @@ jQuery(function () {
     $('#barraRolagemUsuarios').overlayScrollbars({});
 
     socket.on('chat message', function (user, msg, data, logo, self) {
+
+        $.get('/hear', {Mensagem: msg}, function (retornoAudio) {
+            $('#playerAudio').attr('src', 'http://localhost:3000' + retornoAudio);
+            $('#playerAudio').load();
+        })
+
+
         let paragrafo = (self ? '' +
             '<li class="animation-target" style="width:100%">' +
             '<div class="msj macro">' +
@@ -64,18 +71,12 @@ jQuery(function () {
 
     $('.btn-users').on('click', function () {
         $('.card-users').toggleClass('show');
+        retornaqtdViews();
     });
 
     setInterval(retornaqtdViews, 30000);
 
-    // $.ajax({
-    //     url: 'https://tmi.twitch.tv/group/user/rtstreamer/chatters',
-    //     method: 'GET',
-    //     dataType: 'jsonp',
-    //     success: function(data) {
-    //         console.log(data);
-    //     }
-    // });
+    retornaqtdViews();
 
     function retornaqtdViews() {
 
@@ -94,7 +95,7 @@ jQuery(function () {
                                 retornaViewrsChat(retornoAjax["data"]["chatters"]);
                             })
                             .catch((erroAjax) => {
-                                console.timeLog(erroAjax);
+                                console.log(erroAjax);
                             });
                     }
                 }
