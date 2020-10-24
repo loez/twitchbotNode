@@ -5,13 +5,12 @@ jQuery(function () {
     $("#barraRolagem").overlayScrollbars({overflowBehavior: {x: 'hidden', y: 'scroll'}});
     $('#barraRolagemUsuarios').overlayScrollbars({});
 
-    socket.on('chat message', function (user, msg, data, logo, self) {
+    socket.on('chat message', function (user, msg, data, logo, self, lermensagem) {
 
-        $.get('/hear', {Mensagem: msg}, function (retornoAudio) {
-            $('#playerAudio').attr('src', 'http://localhost:3000' + retornoAudio);
-            $('#playerAudio').load();
-        })
-
+        if (lermensagem) {
+            let url = encodeURI('/hear?Mensagem=' + msg);
+            $('#audioPlayer').attr('src', url);
+        }
 
         let paragrafo = (self ? '' +
             '<li class="animation-target" style="width:100%">' +

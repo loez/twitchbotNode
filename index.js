@@ -26,12 +26,8 @@ bot.on('chat', function (channel, user, message, self) {
     let data = moment().format('LT'),
         usuario = user["display-name"];
 
-    // if (configuracao["LerMensagem"] === true) {
-    //     tts(message, 1.2);
-    // }
-
     api.retornaLogo(user['user-id'], configuracao["ClientID"], function (logo) {
-        io.emit('chat message', usuario, message, data, logo, self);
+        io.emit('chat message', usuario, message, data, logo, self,configuracao.LerMensagem);
     });
 });
 
@@ -49,10 +45,9 @@ app.get('/nviews', function (req, res) {
     })
 });
 
-app.get('/hear',function (req,res){
+app.get('/hear', function (req, res) {
     res.set({'Content-Type': 'audio/mpeg'});
     gtts.stream(req.query.Mensagem).pipe(res);
-    res.send(req.url);
 })
 
 exports.app = app;
