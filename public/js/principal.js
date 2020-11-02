@@ -1,15 +1,33 @@
 jQuery(function () {
-    let canal;
+    let canal,
+        mensagensLeitura = [],
+        audioPlayer = $('#audioPlayer'),
+        urlLeitura ='';
     let socket = io();
     $('#carregaModal').load('config.modal.html');
     $("#barraRolagem").overlayScrollbars({overflowBehavior: {x: 'hidden', y: 'scroll'}});
     $('#barraRolagemUsuarios').overlayScrollbars({});
 
+    audioPlayer.on('ended',function (){
+        mensagensLeitura.shift();
+        if(mensagensLeitura.length > 0){
+            audioPlayer.attr('src',mensagensLeitura[0]);
+            audioPlayer[0].play();
+        }
+    });
+
     socket.on('chat message', function (user, msg, data, logo, self, lermensagem) {
 
         if (lermensagem) {
-            let url = encodeURI('/hear?Mensagem=' + msg);
-            $('#audioPlayer').attr('src', url);
+            if(mensagensLeitura.length <=0){
+                urlLeitura = encodeURI('/hear?Mensagem=' + msg);
+                mensagensLeitura.push(urlLeitura);
+                audioPlayer.attr('src', mensagensLeitura[0]);
+                audioPlayer[0].play();
+            }else{
+                urlLeitura = encodeURI('/hear?Mensagem=' + msg);
+                mensagensLeitura.push(urlLeitura);
+            }
         }
 
         let paragrafo = (self ? '' +
